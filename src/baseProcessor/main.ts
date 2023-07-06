@@ -1,9 +1,9 @@
 import {EvmBatchProcessor, Log as _Log} from '@subsquid/evm-processor'
 import {TypeormDatabase} from '@subsquid/typeorm-store'
-
-import {EntityBuffer} from '../entityBuffer'
 import * as contractAbi from '../abi/abi'
-import {Emotes, Block} from '../model'
+import { Block, Token, TokenEmote, Emoter} from '../model'
+import * as spec from "../abi/abi";
+import {In} from "typeorm";
 
 
 const getProcessor = (archive: string, chainRPC: string, emotesRepoAddress: string, initBlock: number) => {
@@ -16,7 +16,7 @@ const getProcessor = (archive: string, chainRPC: string, emotesRepoAddress: stri
             log: {
                 topics: true,
                 data: true,
-                transactionHash: true,  
+                transactionHash: true,
             },
         })
         .addLog({
@@ -34,45 +34,80 @@ export const runProcessor = (archive: string, chainId: number, chainRPC: string,
     const processor = getProcessor(archive, chainRPC, emotesRepoAddress, initBlock);
     const db = new TypeormDatabase({supportHotBlocks: false, stateSchema: chainSchema});
     processor.run(db, async (ctx) => {
+        const emoteEventsData: {emoter: string, tokenId: bigint, on: boolean, collection: string, emoji: string, eventId: string, block: Block}[] = [];
+
         for (let block of ctx.blocks) {
             const blockEntity = new Block({
                 id: `${chainId}-${block.header.id}`,
                 number: block.header.height,
                 timestamp: new Date(block.header.timestamp),
             })
-            EntityBuffer.add(blockEntity)
-    
+
             for (let log of block.logs) {
-                if (log.address === emotesRepoAddress) {
-                    try {
-                        switch (log.topics[0]) {
-                            case contractAbi.events['Emoted'].topic: {
-                                let e = contractAbi.events['Emoted'].decode(log)
-                                EntityBuffer.add(
-                                    new Emotes({
-                                        id: `${chainId}-${log.id}`,
-                                        block: blockEntity,
-                                        chainId: chainId,
-                                        emoter: e[0],
-                                        collection: e[1],
-                                        tokenId: e[2],
-                                        emoji: e[3],
-                                        on: e[4],
-                                    })
-                                )
-                                break
-                            }
-                        }
-                    }
-                    catch (error) {
-                        ctx.log.error({error, blockNumber: log.block.height, blockHash: log.block.hash, emotesRepoAddress}, `Unable to decode event "${log.topics[0]}"`)
-                    }
+                if (log.topics[0] === spec.events.Emoted.topic) {
+                    const {emoter, tokenId, on, collection, emoji} = spec.events['Emoted'].decode(log)
+                    emoteEventsData.push({
+                        emoter,
+                        tokenId,
+                        on,
+                        collection,
+                        emoji,
+                        eventId: log.id,
+                        block: blockEntity
+                    })
                 }
             }
         }
-    
-        for (let entities of EntityBuffer.flush()) {
-            await ctx.store.insert(entities)
+
+        const tokensIds: Set<string> = new Set()
+        // const eventIds: Set<string> = new Set()
+        const emoteIds: Set<string> = new Set()
+        const emoterIds: Set<string> = new Set()
+
+        for (let emoteEventsDataItem of emoteEventsData) {
+            const tokenDatabaseId = `${chainId}-${emoteEventsDataItem.collection}-${emoteEventsDataItem.tokenId}`
+
+            const tokenEmoteDatabaseId = `${tokenDatabaseId}-${emoteEventsDataItem.emoter}-${emoteEventsDataItem.emoji}`
+            // tokensIds.add(`${emoteEventsDataItem.collection}-${emoteEventsDataItem.tokenId}`)
+            // eventIds.add(emoteEventsDataItem.eventId)
+            emoteIds.add(tokenEmoteDatabaseId)
+            emoterIds.add(emoteEventsDataItem.emoter)
         }
+
+        let tokens = await ctx.store.findBy(Token, {id: In([...tokensIds])}).then((q) => new Map(q.map((i) => [i.id, i])))
+        // let emoteEvents = await ctx.store.findBy(EmoteEvent, {id: In([...eventIds])}).then((q) => new Map(q.map((i) => [i.id, i])))
+        let tokenEmotes = await ctx.store.findBy(TokenEmote, {id: In([...emoteIds])}).then((q) => new Map(q.map((i) => [i.id, i])))
+        let emoters = await ctx.store.findBy(Emoter, {id: In([...emoterIds])}).then((q) => new Map(q.map((i) => [i.id, i])))
+
+        for (let emoteEventsDataItem of emoteEventsData) {
+            const tokenDatabaseId = `${chainId}-${emoteEventsDataItem.collection}-${emoteEventsDataItem.tokenId}`
+
+            const tokenEmoteDatabaseId = `${tokenDatabaseId}-${emoteEventsDataItem.emoter}-${emoteEventsDataItem.emoji}`
+            let tokenEmote = tokenEmotes.get(tokenEmoteDatabaseId)
+            if (tokenEmote == null) {
+                tokenEmote = new TokenEmote({id: tokenEmoteDatabaseId, emoji: emoteEventsDataItem.emoji, on: emoteEventsDataItem.on, chainId: chainId,})
+                tokenEmotes.set(tokenEmote.id, tokenEmote)
+            }
+
+            let token = tokens.get(tokenDatabaseId)
+            if (token == null) {
+                token = new Token({id: tokenDatabaseId, collection: emoteEventsDataItem.collection, tokenId: emoteEventsDataItem.tokenId})
+                tokens.set(token.id, token)
+            }
+
+            let emoter = emoters.get(emoteEventsDataItem.emoter)
+            if (emoter == null) {
+                emoter = new Emoter({id: emoteEventsDataItem.emoter  })
+                emoters.set(emoter.id, emoter)
+            }
+
+            tokenEmote.token = token;
+            tokenEmote.emoter = emoter;
+        }
+
+        await ctx.store.upsert([...emoters.values()])
+        await ctx.store.upsert([...tokens.values()])
+
+        await ctx.store.upsert([...tokenEmotes.values()])
     })
 }

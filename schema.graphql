@@ -4,14 +4,37 @@ type Block @entity {
     timestamp: DateTime! @index
 }
 
-type Emotes @entity {
+#type EmoteEvent @entity {
+#    id: ID!
+#    block: Block!
+#    emoter: String! @index
+#    collection: String! @index
+#    token: Token!
+#    tokenEmote: TokenEmote!
+#    on: Boolean!
+#}
+
+type TokenEmote @entity {
     id: ID!
-    block: Block!
-    chainId: Int! @index
-    emoter: String! @index
-    collection: String! @index
-    tokenId: BigInt! @index
-    emoji: String!
+    emoji: String! @index
+    token: Token
+#    event: EmoteEvent!
+    emoter: Emoter
     on: Boolean!
+    chainId: Int! @index
+}
+
+type Emoter @entity {
+    id: ID!
+#    events: [EmoteEvent!]! @derivedFrom(field: "event")
+    emotes: [TokenEmote!] @derivedFrom(field: "emoter")
+}
+
+type Token @entity {
+    id: ID!
+    tokenId: BigInt! @index
+    collection: String! @index
+    emotes: [TokenEmote!] @derivedFrom(field: "token")
+#    events: [EmoteEvent!]! @derivedFrom(field: "event")
 }
 
