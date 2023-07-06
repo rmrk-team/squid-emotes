@@ -4,7 +4,7 @@ import * as contractAbi from './abi/abi'
 export const processor = new EvmBatchProcessor()
     .setDataSource({
         archive: 'https://v2.archive.subsquid.io/network/ethereum-sepolia',
-        chain: 'https://eth-sepolia.blastapi.io/f83b94ac-46b2-496d-89c2-5100f235a424',
+        chain: process.env.RPC_API_WSS,
     })
     .setFields({
         log: {

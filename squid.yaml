@@ -1,15 +1,17 @@
 manifestVersion: subsquid.io/v0.1
 name: erc6381-emotes
 version: 1
-description: 'A squid indexer generated from an ABI template  '
+description: 'A squid indexer for ERC6381 emotes'
 build: 
 deploy:
+  secrets:
+    - pro
   addons:
     postgres: 
   processor:
     cmd:
       - node
-      - lib/processor
+      - lib/main
   api:
     cmd:
       - npx
