@@ -5,13 +5,28 @@ description: 'A squid indexer for ERC6381 emotes'
 build: 
 deploy:
   secrets:
-    - RPC_API_WSS
+    - ETH_MAINNET_RPC
+    - ETH_SEPOLIA_RPC
+    - ARBITRUM_GOERLI_RPC
+    - MOONRIVER_RPC
+    - MOONBEAM_RPC
   addons:
     postgres: 
   processor:
     cmd:
       - node
       - lib/main
+  processor:
+    - name: eth-sepolia
+      cmd: [ "node", "lib/networks/eth-sepolia/main" ]
+    - name: eth-mainnet
+      cmd: [ "node", "lib/networks/eth-mainnet/main" ]
+    - name: arbitrum-goerli
+      cmd: [ "node", "lib/networks/arbitrum-goerli/main" ]
+    - name: moonriver
+      cmd: [ "node", "lib/networks/moonriver/main" ]
+    - name: moonbeam
+      cmd: [ "node", "lib/networks/moonbeam/main" ]
   api:
     cmd:
       - npx

@@ -7,6 +7,7 @@ type Block @entity {
 type Emotes @entity {
     id: ID!
     block: Block!
+    chainId: Int! @index
     emoter: String! @index
     collection: String! @index
     tokenId: BigInt! @index

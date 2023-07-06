@@ -16,6 +16,10 @@ export class Emotes {
     block!: Block
 
     @Index_()
+    @Column_("int4", {nullable: false})
+    chainId!: number
+
+    @Index_()
     @Column_("text", {nullable: false})
     emoter!: string
 
