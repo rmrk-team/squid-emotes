@@ -61,7 +61,7 @@
       "process:eth-mainnet": {
         "description": "Load .env and start the ETH Mainnet squid processor",
         "deps": ["build", "migration:apply"],
-        "cmd": ["node", "--require=dotenv/config", "lib/networks/eth-sepolia/main.js"]
+        "cmd": ["node", "--require=dotenv/config", "lib/networks/eth-mainnet/main.js"]
       },
       "process:arbitrum-goerli": {
         "description": "Load .env and start the Arbitrum Goerli squid processor",

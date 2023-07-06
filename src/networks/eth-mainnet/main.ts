@@ -1,10 +1,10 @@
 import {runProcessor} from '../../baseProcessor/main'
 
 runProcessor(
-    process.env.ETHEREUM_ARCHIVE || '',
-    parseInt(process.env.ETHEREUM_CHAIN_ID || '0'),
-    process.env.ETHEREUM_RPC || '',
+    process.env.ETH_MAINNET_ARCHIVE || '',
+    parseInt(process.env.ETH_MAINNET_CHAIN_ID || '0'),
+    process.env.ETH_MAINNET_RPC || '',
     'ethereum-mainnet',
-    process.env.ETHEREUM_EMOTES_REPO_ADDRESS || '',
-    parseInt(process.env.ETHEREUM_INIT_BLOCK || '0'),
+    process.env.ETH_MAINNET_EMOTES_REPO_ADDRESS || '',
+    parseInt(process.env.ETH_MAINNET_INIT_BLOCK || '0'),
 )
