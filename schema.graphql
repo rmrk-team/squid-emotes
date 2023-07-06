@@ -4,16 +4,6 @@ type Block @entity {
     timestamp: DateTime! @index
 }
 
-type Transaction @entity {
-    id: ID!
-    blockNumber: Int @index
-    blockTimestamp: DateTime! @index
-    hash: String! @index
-    to: String @index
-    from: String @index
-    status: Int @index
-}
-
 type ContractEventEmoted @entity {
     id: ID!
     blockNumber: Int! @index

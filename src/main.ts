@@ -2,7 +2,7 @@ import {contract} from './mapping'
 import {processor} from './processor'
 import {db, Store} from './db'
 import {EntityBuffer} from './entityBuffer'
-import {Block, Transaction} from './model'
+import {Block} from './model'
 
 processor.run(db, async (ctx) => {
     for (let block of ctx.blocks) {
@@ -18,24 +18,6 @@ processor.run(db, async (ctx) => {
             if (log.address === '0x31107354b61a0412e722455a771bc462901668ea') {
                 contract.parseEvent(ctx, log)
             }
-        }
-
-        for (let transaction of block.transactions) {
-            if (transaction.to === '0x31107354b61a0412e722455a771bc462901668ea') {
-                contract.parseFunction(ctx, transaction)
-            }
-
-            EntityBuffer.add(
-                new Transaction({
-                    id: transaction.id,
-                    blockNumber: block.header.height,
-                    blockTimestamp: new Date(block.header.timestamp),
-                    hash: transaction.hash,
-                    to: transaction.to,
-                    from: transaction.from,
-                    status: transaction.status,
-                })
-            )
         }
     }
 

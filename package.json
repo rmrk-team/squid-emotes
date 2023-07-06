@@ -1,5 +1,5 @@
 {
-  "name": "squid-evm-template",
+  "name": "erc6381-emotes",
   "private": true,
   "scripts": {
     "build": "rm -rf lib/ && tsc"

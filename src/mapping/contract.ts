@@ -3,7 +3,7 @@ import {Store} from '../db'
 import {EntityBuffer} from '../entityBuffer'
 import {ContractEventEmoted} from '../model'
 import * as spec from '../abi/abi'
-import {Log, Transaction} from '../processor'
+import {Log} from '../processor'
 
 const address = '0x31107354b61a0412e722455a771bc462901668ea'
 
@@ -37,12 +37,3 @@ export function parseEvent(ctx: DataHandlerContext<Store>, log: Log) {
     }
 }
 
-export function parseFunction(ctx: DataHandlerContext<Store>, transaction: Transaction) {
-    try {
-        switch (transaction.input.slice(0, 10)) {
-        }
-    }
-    catch (error) {
-        ctx.log.error({error, blockNumber: transaction.block.height, blockHash: transaction.block.hash, address}, `Unable to decode function "${transaction.input.slice(0, 10)}"`)
-    }
-}

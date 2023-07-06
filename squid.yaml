@@ -1,5 +1,5 @@
 manifestVersion: subsquid.io/v0.1
-name: squid-emotes
+name: erc6381-emotes
 version: 1
 description: 'A squid indexer generated from an ABI template  '
 build: 
