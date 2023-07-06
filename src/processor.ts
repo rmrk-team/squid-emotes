@@ -10,7 +10,7 @@ export const processor = new EvmBatchProcessor()
         log: {
             topics: true,
             data: true,
-            transactionHash: true,
+            transactionHash: true,  
         },
     })
     .addLog({

@@ -4,13 +4,9 @@ type Block @entity {
     timestamp: DateTime! @index
 }
 
-type ContractEventEmoted @entity {
+type Emotes @entity {
     id: ID!
-    blockNumber: Int! @index
-    blockTimestamp: DateTime! @index
-    transactionHash: String! @index
-    contract: String! @index
-    eventName: String! @index
+    block: Block!
     emoter: String! @index
     collection: String! @index
     tokenId: BigInt! @index

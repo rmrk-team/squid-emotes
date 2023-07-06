@@ -1,26 +1,22 @@
 import {DataHandlerContext} from '@subsquid/evm-processor'
 import {Store} from '../db'
 import {EntityBuffer} from '../entityBuffer'
-import {ContractEventEmoted} from '../model'
+import {Emotes, Block} from '../model'
 import * as spec from '../abi/abi'
 import {Log} from '../processor'
 
 const address = '0x31107354b61a0412e722455a771bc462901668ea'
 
 
-export function parseEvent(ctx: DataHandlerContext<Store>, log: Log) {
+export function parseEvent(ctx: DataHandlerContext<Store>, log: Log, block: Block) {
     try {
         switch (log.topics[0]) {
             case spec.events['Emoted'].topic: {
                 let e = spec.events['Emoted'].decode(log)
                 EntityBuffer.add(
-                    new ContractEventEmoted({
+                    new Emotes({
                         id: log.id,
-                        blockNumber: log.block.height,
-                        blockTimestamp: new Date(log.block.timestamp),
-                        transactionHash: log.transactionHash,
-                        contract: log.address,
-                        eventName: 'Emoted',
+                        block: block,
                         emoter: e[0],
                         collection: e[1],
                         tokenId: e[2],

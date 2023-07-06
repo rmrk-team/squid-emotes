@@ -5,7 +5,7 @@ description: 'A squid indexer for ERC6381 emotes'
 build: 
 deploy:
   secrets:
-    - pro
+    - RPC_API_WSS
   addons:
     postgres: 
   processor:
