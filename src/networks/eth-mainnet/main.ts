@@ -1,10 +1,11 @@
 import {runProcessor} from '../../baseProcessor/main'
+import *  as constants from './../constants'
 
 runProcessor(
-    process.env.ETH_MAINNET_ARCHIVE || '',
-    parseInt(process.env.ETH_MAINNET_CHAIN_ID || '0'),
-    process.env.ETH_MAINNET_RPC || '',
+    constants.ETH_MAINNET_ARCHIVE,
+    constants.ETH_MAINNET_CHAIN_ID,
+    constants.ETH_MAINNET_RPC,
     'ethereum-mainnet',
-    process.env.ETH_MAINNET_EMOTES_REPO_ADDRESS || '',
-    parseInt(process.env.ETH_MAINNET_INIT_BLOCK || '0'),
+    constants.ETH_MAINNET_EMOTES_REPO_ADDRESS,
+    constants.ETH_MAINNET_INIT_BLOCK,
 )

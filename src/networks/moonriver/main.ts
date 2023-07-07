@@ -1,10 +1,11 @@
 import {runProcessor} from '../../baseProcessor/main'
+import *  as constants from './../constants'
 
 runProcessor(
-    process.env.MOONRIVER_ARCHIVE || '',
-    parseInt(process.env.MOONRIVER_CHAIN_ID || '0'),
-    process.env.MOONRIVER_RPC || '',
+    constants.MOONRIVER_ARCHIVE,
+    constants.MOONRIVER_CHAIN_ID,
+    constants.MOONRIVER_RPC,
     'moonriver',
-    process.env.MOONRIVER_EMOTES_REPO_ADDRESS || '',
-    parseInt(process.env.MOONRIVER_INIT_BLOCK || '0'),
+    constants.MOONRIVER_EMOTES_REPO_ADDRESS,
+    constants.MOONRIVER_INIT_BLOCK,
 )

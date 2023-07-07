@@ -1,10 +1,11 @@
 import {runProcessor} from '../../baseProcessor/main'
+import *  as constants from './../constants'
 
 runProcessor(
-    process.env.MOONBEAM_ARCHIVE || '',
-    parseInt(process.env.MOONBEAM_CHAIN_ID || '0'),
-    process.env.MOONBEAM_RPC || '',
+    constants.MOONBEAM_ARCHIVE,
+    constants.MOONBEAM_CHAIN_ID,
+    constants.MOONBEAM_RPC,
     'moonbeam',
-    process.env.MOONBEAM_EMOTES_REPO_ADDRESS || '',
-    parseInt(process.env.MOONBEAM_INIT_BLOCK || '0'),
+    constants.MOONBEAM_EMOTES_REPO_ADDRESS,
+    constants.MOONBEAM_INIT_BLOCK,
 )

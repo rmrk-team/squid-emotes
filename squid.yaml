@@ -13,10 +13,6 @@ deploy:
   addons:
     postgres: 
   processor:
-    cmd:
-      - node
-      - lib/main
-  processor:
     - name: eth-sepolia
       cmd: [ "node", "lib/networks/eth-sepolia/main" ]
     - name: eth-mainnet

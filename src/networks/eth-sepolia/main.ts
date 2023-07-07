@@ -1,10 +1,11 @@
 import {runProcessor} from '../../baseProcessor/main'
+import *  as constants from './../constants'
 
 runProcessor(
-    process.env.ETH_SEPOLIA_ARCHIVE || '',
-    parseInt(process.env.ETH_SEPOLIA_CHAIN_ID || '0'),
-    process.env.ETH_SEPOLIA_RPC || '',
+    constants.ETH_SEPOLIA_ARCHIVE,
+    constants.ETH_SEPOLIA_CHAIN_ID,
+    constants.ETH_SEPOLIA_RPC,
     'ethereum-sepolia',
-    process.env.ETH_SEPOLIA_EMOTES_REPO_ADDRESS || '',
-    parseInt(process.env.ETH_SEPOLIA_INIT_BLOCK || '0'),
+    constants.ETH_SEPOLIA_EMOTES_REPO_ADDRESS,
+    constants.ETH_SEPOLIA_INIT_BLOCK,
 )

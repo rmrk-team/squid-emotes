@@ -1,10 +1,11 @@
 import {runProcessor} from '../../baseProcessor/main'
+import *  as constants from './../constants'
 
 runProcessor(
-    process.env.ETH_SEPOLIA_ARCHIVE || '',
-    parseInt(process.env.ETH_SEPOLIA_CHAIN_ID || '0'),
-    process.env.ETH_SEPOLIA_RPC || '',
+    constants.ARBITRUM_GOERLI_ARCHIVE || '',
+    constants.ARBITRUM_GOERLI_CHAIN_ID,
+    constants.ARBITRUM_GOERLI_RPC || '',
     'arbitrum-goerli',
-    process.env.ETH_SEPOLIA_EMOTES_REPO_ADDRESS || '',
-    parseInt(process.env.ETH_SEPOLIA_INIT_BLOCK || '0'),
+    constants.ARBITRUM_GOERLI_EMOTES_REPO_ADDRESS || '',
+    constants.ARBITRUM_GOERLI_INIT_BLOCK,
 )
