@@ -5,6 +5,16 @@ export const ABI_JSON = [
         "inputs": []
     },
     {
+        "type": "error",
+        "name": "ExpiredPresignedEmote",
+        "inputs": []
+    },
+    {
+        "type": "error",
+        "name": "InvalidSignature",
+        "inputs": []
+    },
+    {
         "type": "event",
         "anonymous": false,
         "name": "Emoted",
@@ -25,7 +35,7 @@ export const ABI_JSON = [
                 "indexed": true
             },
             {
-                "type": "bytes4",
+                "type": "string",
                 "name": "emoji",
                 "indexed": false
             },
@@ -64,7 +74,7 @@ export const ABI_JSON = [
                 "name": "tokenIds"
             },
             {
-                "type": "bytes4[]",
+                "type": "string[]",
                 "name": "emojis"
             },
             {
@@ -90,7 +100,7 @@ export const ABI_JSON = [
                 "name": "tokenIds"
             },
             {
-                "type": "bytes4[]",
+                "type": "string[]",
                 "name": "emojis"
             }
         ],
@@ -116,7 +126,7 @@ export const ABI_JSON = [
                 "name": "tokenIds"
             },
             {
-                "type": "bytes4[]",
+                "type": "string[]",
                 "name": "emojis"
             },
             {
@@ -153,7 +163,7 @@ export const ABI_JSON = [
                 "name": "tokenIds"
             },
             {
-                "type": "bytes4[]",
+                "type": "string[]",
                 "name": "emojis"
             },
             {
@@ -194,7 +204,7 @@ export const ABI_JSON = [
                 "name": "tokenId"
             },
             {
-                "type": "bytes4",
+                "type": "string",
                 "name": "emoji"
             },
             {
@@ -220,7 +230,7 @@ export const ABI_JSON = [
                 "name": "tokenId"
             },
             {
-                "type": "bytes4",
+                "type": "string",
                 "name": "emoji"
             }
         ],
@@ -250,7 +260,7 @@ export const ABI_JSON = [
                 "name": "tokenId"
             },
             {
-                "type": "bytes4",
+                "type": "string",
                 "name": "emoji"
             }
         ],
@@ -280,7 +290,7 @@ export const ABI_JSON = [
                 "name": "tokenIds"
             },
             {
-                "type": "bytes4[]",
+                "type": "string[]",
                 "name": "emojis"
             }
         ],
@@ -306,7 +316,7 @@ export const ABI_JSON = [
                 "name": "tokenId"
             },
             {
-                "type": "bytes4",
+                "type": "string",
                 "name": "emoji"
             },
             {
@@ -343,7 +353,7 @@ export const ABI_JSON = [
                 "name": "tokenId"
             },
             {
-                "type": "bytes4",
+                "type": "string",
                 "name": "emoji"
             },
             {

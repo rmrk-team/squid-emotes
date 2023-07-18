@@ -6,7 +6,7 @@ export const abi = new ethers.Interface(ABI_JSON);
 
 export const events = {
     Emoted: new LogEvent<([emoter: string, collection: string, tokenId: bigint, emoji: string, on: boolean] & {emoter: string, collection: string, tokenId: bigint, emoji: string, on: boolean})>(
-        abi, '0x6b0e468bf8d2b303be2f302153e4c5d06cdf1fc436eab9e127e482dc596dc0b7'
+        abi, '0xc2b82fdaed025f01d8e5b2b33a92ae334e5aea9c6f7c9b09a0b51a21540efdb5'
     ),
 }
 
@@ -15,34 +15,34 @@ export const functions = {
         abi, '0x3644e515'
     ),
     bulkEmote: new Func<[collections: Array<string>, tokenIds: Array<bigint>, emojis: Array<string>, states: Array<boolean>], {collections: Array<string>, tokenIds: Array<bigint>, emojis: Array<string>, states: Array<boolean>}, []>(
-        abi, '0x2d2ac944'
+        abi, '0xd892eb9c'
     ),
     bulkEmoteCountOf: new Func<[collections: Array<string>, tokenIds: Array<bigint>, emojis: Array<string>], {collections: Array<string>, tokenIds: Array<bigint>, emojis: Array<string>}, Array<bigint>>(
-        abi, '0x7595ecab'
+        abi, '0x4e40a74d'
     ),
     bulkPrepareMessagesToPresignEmote: new Func<[collections: Array<string>, tokenIds: Array<bigint>, emojis: Array<string>, states: Array<boolean>, deadlines: Array<bigint>], {collections: Array<string>, tokenIds: Array<bigint>, emojis: Array<string>, states: Array<boolean>, deadlines: Array<bigint>}, Array<string>>(
-        abi, '0x7d42e2bc'
+        abi, '0xd600afe6'
     ),
     bulkPresignedEmote: new Func<[emoters: Array<string>, collections: Array<string>, tokenIds: Array<bigint>, emojis: Array<string>, states: Array<boolean>, deadlines: Array<bigint>, v: Array<number>, r: Array<string>, s: Array<string>], {emoters: Array<string>, collections: Array<string>, tokenIds: Array<bigint>, emojis: Array<string>, states: Array<boolean>, deadlines: Array<bigint>, v: Array<number>, r: Array<string>, s: Array<string>}, []>(
-        abi, '0xef056141'
+        abi, '0xa802a32d'
     ),
     emote: new Func<[collection: string, tokenId: bigint, emoji: string, state: boolean], {collection: string, tokenId: bigint, emoji: string, state: boolean}, []>(
-        abi, '0xb1495281'
+        abi, '0x760cc088'
     ),
     emoteCountOf: new Func<[collection: string, tokenId: bigint, emoji: string], {collection: string, tokenId: bigint, emoji: string}, bigint>(
-        abi, '0xdad998a6'
+        abi, '0xf1bf462c'
     ),
     hasEmoterUsedEmote: new Func<[emoter: string, collection: string, tokenId: bigint, emoji: string], {emoter: string, collection: string, tokenId: bigint, emoji: string}, boolean>(
-        abi, '0x637b5d81'
+        abi, '0x49471116'
     ),
     haveEmotersUsedEmotes: new Func<[emoters: Array<string>, collections: Array<string>, tokenIds: Array<bigint>, emojis: Array<string>], {emoters: Array<string>, collections: Array<string>, tokenIds: Array<bigint>, emojis: Array<string>}, Array<boolean>>(
-        abi, '0x39e5c8f9'
+        abi, '0xcb55d7b1'
     ),
     prepareMessageToPresignEmote: new Func<[collection: string, tokenId: bigint, emoji: string, state: boolean, deadline: bigint], {collection: string, tokenId: bigint, emoji: string, state: boolean, deadline: bigint}, string>(
-        abi, '0xa3a370b4'
+        abi, '0x40f4352d'
     ),
     presignedEmote: new Func<[emoter: string, collection: string, tokenId: bigint, emoji: string, state: boolean, deadline: bigint, v: number, r: string, s: string], {emoter: string, collection: string, tokenId: bigint, emoji: string, state: boolean, deadline: bigint, v: number, r: string, s: string}, []>(
-        abi, '0x81af4ca3'
+        abi, '0xb6b6129f'
     ),
     supportsInterface: new Func<[interfaceId: string], {interfaceId: string}, boolean>(
         abi, '0x01ffc9a7'

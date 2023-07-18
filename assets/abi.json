@@ -5,6 +5,16 @@
     "type": "error"
   },
   {
+    "inputs": [],
+    "name": "ExpiredPresignedEmote",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidSignature",
+    "type": "error"
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
@@ -27,9 +37,9 @@
       },
       {
         "indexed": false,
-        "internalType": "bytes4",
+        "internalType": "string",
         "name": "emoji",
-        "type": "bytes4"
+        "type": "string"
       },
       {
         "indexed": false,
@@ -67,9 +77,9 @@
         "type": "uint256[]"
       },
       {
-        "internalType": "bytes4[]",
+        "internalType": "string[]",
         "name": "emojis",
-        "type": "bytes4[]"
+        "type": "string[]"
       },
       {
         "internalType": "bool[]",
@@ -95,9 +105,9 @@
         "type": "uint256[]"
       },
       {
-        "internalType": "bytes4[]",
+        "internalType": "string[]",
         "name": "emojis",
-        "type": "bytes4[]"
+        "type": "string[]"
       }
     ],
     "name": "bulkEmoteCountOf",
@@ -124,9 +134,9 @@
         "type": "uint256[]"
       },
       {
-        "internalType": "bytes4[]",
+        "internalType": "string[]",
         "name": "emojis",
-        "type": "bytes4[]"
+        "type": "string[]"
       },
       {
         "internalType": "bool[]",
@@ -168,9 +178,9 @@
         "type": "uint256[]"
       },
       {
-        "internalType": "bytes4[]",
+        "internalType": "string[]",
         "name": "emojis",
-        "type": "bytes4[]"
+        "type": "string[]"
       },
       {
         "internalType": "bool[]",
@@ -216,9 +226,9 @@
         "type": "uint256"
       },
       {
-        "internalType": "bytes4",
+        "internalType": "string",
         "name": "emoji",
-        "type": "bytes4"
+        "type": "string"
       },
       {
         "internalType": "bool",
@@ -244,9 +254,9 @@
         "type": "uint256"
       },
       {
-        "internalType": "bytes4",
+        "internalType": "string",
         "name": "emoji",
-        "type": "bytes4"
+        "type": "string"
       }
     ],
     "name": "emoteCountOf",
@@ -278,9 +288,9 @@
         "type": "uint256"
       },
       {
-        "internalType": "bytes4",
+        "internalType": "string",
         "name": "emoji",
-        "type": "bytes4"
+        "type": "string"
       }
     ],
     "name": "hasEmoterUsedEmote",
@@ -312,9 +322,9 @@
         "type": "uint256[]"
       },
       {
-        "internalType": "bytes4[]",
+        "internalType": "string[]",
         "name": "emojis",
-        "type": "bytes4[]"
+        "type": "string[]"
       }
     ],
     "name": "haveEmotersUsedEmotes",
@@ -341,9 +351,9 @@
         "type": "uint256"
       },
       {
-        "internalType": "bytes4",
+        "internalType": "string",
         "name": "emoji",
-        "type": "bytes4"
+        "type": "string"
       },
       {
         "internalType": "bool",
@@ -385,9 +395,9 @@
         "type": "uint256"
       },
       {
-        "internalType": "bytes4",
+        "internalType": "string",
         "name": "emoji",
-        "type": "bytes4"
+        "type": "string"
       },
       {
         "internalType": "bool",

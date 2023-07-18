@@ -7,8 +7,8 @@ export const ETH_MAINNET_INIT_BLOCK=17577219
 export const ETH_SEPOLIA_ARCHIVE='https://v2.archive.subsquid.io/network/ethereum-sepolia'
 export const ETH_SEPOLIA_RPC=process.env.ETH_SEPOLIA_RPC || ''
 export const ETH_SEPOLIA_CHAIN_ID=11155111
-export const ETH_SEPOLIA_EMOTES_REPO_ADDRESS='0x31107354b61a0412e722455a771bc462901668ea'
-export const ETH_SEPOLIA_INIT_BLOCK=3770923
+export const ETH_SEPOLIA_EMOTES_REPO_ADDRESS='0x7740D670f202506A2a40Bb23a8F14ea1fDD1da9f'
+export const ETH_SEPOLIA_INIT_BLOCK=3917929
 
 export const ARBITRUM_GOERLI_ARCHIVE='https://v2.archive.subsquid.io/network/arbitrum-goerli'
 export const ARBITRUM_GOERLI_RPC=process.env.ARBITRUM_GOERLI_RPC || ''
