@@ -50,7 +50,7 @@ export const runProcessor = (archive: string, chainId: number, chainRPC: string,
                         emoter,
                         tokenId,
                         on,
-                        collection,
+                        collection: collection.toLowerCase(),
                         emoji,
                         eventId: log.id,
                         block: blockEntity
