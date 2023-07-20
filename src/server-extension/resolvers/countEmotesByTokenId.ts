@@ -16,7 +16,7 @@ export class MyResolver {
         const result: [CountEmotesByTokenIdEntity] = await manager.getRepository(TokenEmote).query(
             `
                 SELECT emoji, COUNT(*) AS emoji_count
-                FROM token_emote WHERE token_id = (CAST($1 as varchar))
+                FROM token_emote WHERE token_id = (CAST($1 as varchar)) AND "on" = TRUE
                 GROUP BY emoji;`,
             [tokenId])
 
