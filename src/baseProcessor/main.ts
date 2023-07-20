@@ -85,7 +85,7 @@ export const runProcessor = (archive: string, chainId: number, chainRPC: string,
             const tokenEmoteDatabaseId = `${tokenDatabaseId}-${emoteEventsDataItem.emoter}-${emoteEventsDataItem.emoji}`
             let tokenEmote = tokenEmotes.get(tokenEmoteDatabaseId)
             if (tokenEmote == null) {
-                tokenEmote = new TokenEmote({id: tokenEmoteDatabaseId, emoji: emoteEventsDataItem.emoji, on: emoteEventsDataItem.on, chainId: chainId,})
+                tokenEmote = new TokenEmote({id: tokenEmoteDatabaseId, timestamp: emoteEventsDataItem.block.timestamp, emoji: emoteEventsDataItem.emoji, on: emoteEventsDataItem.on, chainId: chainId,})
                 tokenEmotes.set(tokenEmote.id, tokenEmote)
             }
 

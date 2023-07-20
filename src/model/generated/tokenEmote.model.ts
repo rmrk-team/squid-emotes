@@ -11,6 +11,9 @@ export class TokenEmote {
     @PrimaryColumn_()
     id!: string
 
+    @Column_("timestamp with time zone", {nullable: false})
+    timestamp!: Date
+
     @Index_()
     @Column_("text", {nullable: false})
     emoji!: string

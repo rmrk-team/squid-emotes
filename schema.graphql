@@ -16,6 +16,7 @@ type Block @entity {
 
 type TokenEmote @entity {
     id: ID!
+    timestamp: DateTime!
     emoji: String! @index
     token: Token
 #    event: EmoteEvent!
