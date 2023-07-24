@@ -78,6 +78,11 @@
         "deps": ["build", "migration:apply"],
         "cmd": ["node", "--require=dotenv/config", "lib/networks/moonriver/main.js"]
       },
+      "process:polygon": {
+        "description": "Load .env and start the Polygon squid processor",
+        "deps": ["build", "migration:apply"],
+        "cmd": ["node", "--require=dotenv/config", "lib/networks/polygon/main.js"]
+      },
       "process:prod:eth-sepolia": {
         "description": "Start the ETH Sepolia squid processor",
         "deps": ["migration:apply"],
@@ -106,6 +111,12 @@
         "description": "Start the Moonbeam squid processor",
         "deps": ["migration:apply"],
         "cmd": ["node", "lib/networks/moonbeam/main.js"],
+        "hidden": true
+      },
+      "process:prod:polygon": {
+        "description": "Start the Polygon squid processor",
+        "deps": ["migration:apply"],
+        "cmd": ["node", "lib/networks/polygon/main.js"],
         "hidden": true
       },
       "serve": {

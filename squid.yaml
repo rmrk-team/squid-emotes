@@ -10,6 +10,7 @@ deploy:
     - ARBITRUM_GOERLI_RPC
     - MOONRIVER_RPC
     - MOONBEAM_RPC
+    - POLYGON_RPC
   addons:
     postgres: 
   processor:
@@ -23,6 +24,8 @@ deploy:
       cmd: [ "node", "lib/networks/moonriver/main" ]
     - name: moonbeam
       cmd: [ "node", "lib/networks/moonbeam/main" ]
+    - name: polygon
+      cmd: [ "node", "lib/networks/polygon/main" ]
   api:
     cmd:
       - npx
