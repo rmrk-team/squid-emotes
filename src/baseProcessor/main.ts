@@ -47,7 +47,7 @@ export const runProcessor = (archive: string, chainId: number, chainRPC: string,
                 if (log.topics[0] === spec.events.Emoted.topic) {
                     const {emoter, tokenId, on, collection, emoji} = spec.events['Emoted'].decode(log)
                     emoteEventsData.push({
-                        emoter,
+                        emoter: emoter.toLowerCase(),
                         tokenId,
                         on,
                         collection: collection.toLowerCase(),
@@ -60,7 +60,6 @@ export const runProcessor = (archive: string, chainId: number, chainRPC: string,
         }
 
         const tokensIds: Set<string> = new Set()
-        // const eventIds: Set<string> = new Set()
         const emoteIds: Set<string> = new Set()
         const emoterIds: Set<string> = new Set()
 
@@ -68,14 +67,11 @@ export const runProcessor = (archive: string, chainId: number, chainRPC: string,
             const tokenDatabaseId = `${chainId}-${emoteEventsDataItem.collection}-${emoteEventsDataItem.tokenId}`
 
             const tokenEmoteDatabaseId = `${tokenDatabaseId}-${emoteEventsDataItem.emoter}-${emoteEventsDataItem.emoji}`
-            // tokensIds.add(`${emoteEventsDataItem.collection}-${emoteEventsDataItem.tokenId}`)
-            // eventIds.add(emoteEventsDataItem.eventId)
             emoteIds.add(tokenEmoteDatabaseId)
             emoterIds.add(emoteEventsDataItem.emoter)
         }
 
         let tokens = await ctx.store.findBy(Token, {id: In([...tokensIds])}).then((q) => new Map(q.map((i) => [i.id, i])))
-        // let emoteEvents = await ctx.store.findBy(EmoteEvent, {id: In([...eventIds])}).then((q) => new Map(q.map((i) => [i.id, i])))
         let tokenEmotes = await ctx.store.findBy(TokenEmote, {id: In([...emoteIds])}).then((q) => new Map(q.map((i) => [i.id, i])))
         let emoters = await ctx.store.findBy(Emoter, {id: In([...emoterIds])}).then((q) => new Map(q.map((i) => [i.id, i])))
 
