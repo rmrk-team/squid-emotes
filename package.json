@@ -1,5 +1,5 @@
 {
-  "name": "erc6381-emotes-squid",
+  "name": "emotes-squid",
   "private": true,
   "scripts": {
     "build": "rm -rf lib/ && tsc"

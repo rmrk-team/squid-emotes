@@ -1,7 +1,7 @@
 manifestVersion: subsquid.io/v0.1
-name: erc6381-emotes
+name: emotes
 version: 1
-description: 'A squid indexer for ERC6381 emotes'
+description: 'A squid indexer for emotes'
 build: 
 deploy:
   secrets:
