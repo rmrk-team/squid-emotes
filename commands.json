@@ -63,20 +63,10 @@
         "deps": ["build", "migration:apply"],
         "cmd": ["node", "--require=dotenv/config", "lib/networks/eth-mainnet/main.js"]
       },
-      "process:arbitrum-goerli": {
-        "description": "Load .env and start the Arbitrum Goerli squid processor",
-        "deps": ["build", "migration:apply"],
-        "cmd": ["node", "--require=dotenv/config", "lib/networks/arbitrum-goerli/main.js"]
-      },
       "process:moonbeam": {
         "description": "Load .env and start the Moonbeam squid processor",
         "deps": ["build", "migration:apply"],
         "cmd": ["node", "--require=dotenv/config", "lib/networks/moonbeam/main.js"]
-      },
-      "process:moonriver": {
-        "description": "Load .env and start the Moonriver squid processor",
-        "deps": ["build", "migration:apply"],
-        "cmd": ["node", "--require=dotenv/config", "lib/networks/moonriver/main.js"]
       },
       "process:polygon": {
         "description": "Load .env and start the Polygon squid processor",
@@ -93,18 +83,6 @@
         "description": "Start the ETH Mainnet squid processor",
         "deps": ["migration:apply"],
         "cmd": ["node", "lib/networks/eth-mainnet/main.js"],
-        "hidden": true
-      },
-      "process:prod:arbitrum-goerli": {
-        "description": "Start the Arbitrum Goerli squid processor",
-        "deps": ["migration:apply"],
-        "cmd": ["node", "lib/networks/arbitrum-goerli/main.js"],
-        "hidden": true
-      },
-      "process:prod:moonriver": {
-        "description": "Start the Moonriver squid processor",
-        "deps": ["migration:apply"],
-        "cmd": ["node", "lib/networks/moonriver/main.js"],
         "hidden": true
       },
       "process:prod:moonbeam": {

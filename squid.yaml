@@ -7,8 +7,6 @@ deploy:
   secrets:
     - ETH_MAINNET_RPC
     - ETH_SEPOLIA_RPC
-    - ARBITRUM_GOERLI_RPC
-    - MOONRIVER_RPC
     - MOONBEAM_RPC
     - POLYGON_RPC
   addons:
@@ -18,10 +16,6 @@ deploy:
       cmd: [ "node", "lib/networks/eth-sepolia/main" ]
     - name: eth-mainnet
       cmd: [ "node", "lib/networks/eth-mainnet/main" ]
-    - name: arbitrum-goerli
-      cmd: [ "node", "lib/networks/arbitrum-goerli/main" ]
-    - name: moonriver
-      cmd: [ "node", "lib/networks/moonriver/main" ]
     - name: moonbeam
       cmd: [ "node", "lib/networks/moonbeam/main" ]
     - name: polygon

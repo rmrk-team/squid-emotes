@@ -10,18 +10,6 @@ export const ETH_SEPOLIA_CHAIN_ID=11155111
 export const ETH_SEPOLIA_EMOTES_REPO_ADDRESS='0x31107356a47DD65e832676C1FCBECb0B7C075f5B'
 export const ETH_SEPOLIA_INIT_BLOCK=3932466
 
-export const ARBITRUM_GOERLI_ARCHIVE='https://v2.archive.subsquid.io/network/arbitrum-goerli'
-export const ARBITRUM_GOERLI_RPC=process.env.ARBITRUM_GOERLI_RPC || ''
-export const ARBITRUM_GOERLI_CHAIN_ID=5
-export const ARBITRUM_GOERLI_EMOTES_REPO_ADDRESS='0x31107356a47DD65e832676C1FCBECb0B7C075f5B'
-export const ARBITRUM_GOERLI_INIT_BLOCK=31185484
-
-export const MOONRIVER_ARCHIVE='https://v2.archive.subsquid.io/network/moonriver-mainnet'
-export const MOONRIVER_RPC=process.env.MOONRIVER_RPC || ''
-export const MOONRIVER_CHAIN_ID=1285
-export const MOONRIVER_EMOTES_REPO_ADDRESS='0x31107356a47DD65e832676C1FCBECb0B7C075f5B'
-export const MOONRIVER_INIT_BLOCK=4715430
-
 export const MOONBEAM_ARCHIVE='https://v2.archive.subsquid.io/network/moonbeam-mainnet'
 export const MOONBEAM_RPC=process.env.MOONBEAM_RPC || ''
 export const MOONBEAM_CHAIN_ID=1284
