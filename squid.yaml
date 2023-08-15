@@ -20,6 +20,8 @@ deploy:
       cmd: [ "node", "lib/networks/moonbeam/main" ]
     - name: polygon
       cmd: [ "node", "lib/networks/polygon/main" ]
+    - name: base
+      cmd: [ "node", "lib/networks/base/main" ]
   api:
     cmd:
       - npx

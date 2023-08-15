@@ -73,6 +73,11 @@
         "deps": ["build", "migration:apply"],
         "cmd": ["node", "--require=dotenv/config", "lib/networks/polygon/main.js"]
       },
+      "process:base": {
+        "description": "Load .env and start the Base squid processor",
+        "deps": ["build", "migration:apply"],
+        "cmd": ["node", "--require=dotenv/config", "lib/networks/base/main.js"]
+      },
       "process:prod:eth-sepolia": {
         "description": "Start the ETH Sepolia squid processor",
         "deps": ["migration:apply"],
@@ -95,6 +100,12 @@
         "description": "Start the Polygon squid processor",
         "deps": ["migration:apply"],
         "cmd": ["node", "lib/networks/polygon/main.js"],
+        "hidden": true
+      },
+      "process:prod:base": {
+        "description": "Start the Base squid processor",
+        "deps": ["migration:apply"],
+        "cmd": ["node", "lib/networks/base/main.js"],
         "hidden": true
       },
       "serve": {

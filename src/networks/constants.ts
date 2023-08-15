@@ -29,3 +29,11 @@ export const POLYGON_CHAIN_ID = 137;
 export const POLYGON_EMOTES_REPO_ADDRESS =
   '0x31107356a47DD65e832676C1FCBECb0B7C075f5B';
 export const POLYGON_INIT_BLOCK = 45477725;
+
+export const BASE_ARCHIVE =
+  'https://v2.archive.subsquid.io/network/base-mainnet';
+export const BASE_RPC = process.env.BASE_RPC || '';
+export const BASE_CHAIN_ID = 8453;
+export const BASE_EMOTES_REPO_ADDRESS =
+  '0x31107356a47DD65e832676C1FCBECb0B7C075f5B';
+export const BASE_INIT_BLOCK = 2648217;
