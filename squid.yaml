@@ -2,15 +2,16 @@ manifestVersion: subsquid.io/v0.1
 name: emotes
 version: 1
 description: 'A squid indexer for emotes'
-build: 
+build:
 deploy:
   secrets:
     - ETH_MAINNET_RPC
     - ETH_SEPOLIA_RPC
     - MOONBEAM_RPC
     - POLYGON_RPC
+    - BASE_RPC
   addons:
-    postgres: 
+    postgres:
   processor:
     - name: eth-sepolia
       cmd: [ "node", "lib/networks/eth-sepolia/main" ]
