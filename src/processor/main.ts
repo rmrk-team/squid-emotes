@@ -4,11 +4,11 @@ import * as contractAbi from '../abi/abi';
 import { Block, Token, TokenEmote, Emoter } from '../model';
 import * as spec from '../abi/abi';
 import { In } from 'typeorm';
+import { EMOTES_REPO_LEGACY_ADDRESS, EMOTES_REPO_NEW_ADDRESS } from '../networks/constants';
 
 const getProcessor = (
   archive: string,
   chainRPC: string,
-  emotesRepoAddress: string,
   initBlock: number,
 ) => {
   return new EvmBatchProcessor()
@@ -24,7 +24,7 @@ const getProcessor = (
       },
     })
     .addLog({
-      address: [emotesRepoAddress],
+      address: [EMOTES_REPO_LEGACY_ADDRESS, EMOTES_REPO_NEW_ADDRESS],
       topic0: [contractAbi.events['Emoted'].topic],
       range: {
         from: initBlock,
@@ -38,13 +38,11 @@ export const runProcessor = (
   chainId: number,
   chainRPC: string,
   chainSchema: string,
-  emotesRepoAddress: string,
   initBlock: number,
 ) => {
   const processor = getProcessor(
     archive,
     chainRPC,
-    emotesRepoAddress,
     initBlock,
   );
   const db = new TypeormDatabase({
