@@ -6,6 +6,5 @@ runProcessor(
   constants.BASE_CHAIN_ID,
   constants.BASE_RPC,
   'base',
-  constants.BASE_EMOTES_REPO_ADDRESS,
   constants.BASE_INIT_BLOCK,
 );
