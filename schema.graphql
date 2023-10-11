@@ -2,6 +2,7 @@ type Block @entity {
     id: ID!
     number: Int! @index
     timestamp: DateTime! @index
+    hash: String!
 }
 
 #type EmoteEvent @entity {

@@ -16,4 +16,7 @@ export class Block {
     @Index_()
     @Column_("timestamp with time zone", {nullable: false})
     timestamp!: Date
+
+    @Column_("text", {nullable: false})
+    hash!: string
 }

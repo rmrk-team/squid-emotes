@@ -8,6 +8,7 @@
     "@subsquid/archive-registry": "^3.2.0",
     "@subsquid/evm-processor": "^1.8.1",
     "@subsquid/graphql-server": "^4.3.0",
+    "@subsquid/typeorm-config": "^3.3.0",
     "@subsquid/typeorm-migration": "^1.2.1",
     "@subsquid/typeorm-store": "^1.2.2",
     "@subsquid/util-internal-json": "^1.2.0",

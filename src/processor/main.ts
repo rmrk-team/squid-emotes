@@ -1,21 +1,33 @@
 import { EvmBatchProcessor } from '@subsquid/evm-processor';
-import { TypeormDatabase } from '@subsquid/typeorm-store';
+import { Store, TypeormDatabase } from '@subsquid/typeorm-store';
 import * as contractAbi from '../abi/abi';
 import { Block, Token, TokenEmote, Emoter } from '../model';
 import * as spec from '../abi/abi';
-import { In } from 'typeorm';
-import { EMOTES_REPO_LEGACY_ADDRESS, EMOTES_REPO_NEW_ADDRESS } from '../networks/constants';
+import { DataSource, In, Like } from 'typeorm';
+import {
+  EMOTES_REPO_LEGACY_ADDRESS,
+  EMOTES_REPO_NEW_ADDRESS,
+} from '../networks/constants';
+import { lookupArchive } from '@subsquid/archive-registry';
+// import { createOrmConfig } from '@subsquid/typeorm-config';
 
 const getProcessor = (
-  archive: string,
+  archiveId: string,
   chainRPC: string,
   initBlock: number,
 ) => {
   return new EvmBatchProcessor()
     .setDataSource({
-      archive: archive,
-      chain: chainRPC,
+      archive: lookupArchive(archiveId, {
+        release: 'ArrowSquid',
+        type: 'EVM',
+      }),
+      chain: {
+        url: chainRPC,
+        rateLimit: 40,
+      },
     })
+    .setFinalityConfirmation(150)
     .setFields({
       log: {
         topics: true,
@@ -29,26 +41,67 @@ const getProcessor = (
       range: {
         from: initBlock,
       },
-    })
-    .setFinalityConfirmation(150);
+    });
 };
 
-export const runProcessor = (
-  archive: string,
+// @ts-ignore
+// abstract class StoreWithEntityManager extends Store {
+//   // @ts-ignore
+//   public em: () => EntityManager;
+// }
+// export type DbStore = StoreWithEntityManager;
+//
+// const fixStuckPolygon = async (chainSchema: string, chainId: number) => {
+//   const connection = new DataSource({
+//     ...createOrmConfig(),
+//     subscribers: [],
+//     synchronize: false,
+//     migrationsRun: false,
+//     dropSchema: false,
+//     logging: ['error', 'schema'],
+//   });
+//
+//   await connection.initialize();
+//
+//   const database = new TypeormDatabase({
+//     stateSchema: chainSchema,
+//   });
+//
+//   await database.connect();
+//
+//   const store: DbStore = new Store(() =>
+//     connection.createEntityManager(),
+//   ) as any;
+//   const lastProcessedBlock = await store.em().getRepository(Block).find({
+//     take: 1,
+//   });
+//   console.log('Found latest block:', lastProcessedBlock, `%${chainId}-%`);
+//
+//   if (lastProcessedBlock && lastProcessedBlock?.[0]?.number <= 48544595) {
+//     await store
+//       .em()
+//       .query(`UPDATE ${chainSchema}.status SET height = $1 WHERE id = 0`, [
+//         lastProcessedBlock?.[0].number,
+//       ]);
+//   }
+//
+//   await database.disconnect();
+// };
+
+export const runProcessor = async (
+  archiveId: string,
   chainId: number,
   chainRPC: string,
   chainSchema: string,
   initBlock: number,
 ) => {
-  const processor = getProcessor(
-    archive,
-    chainRPC,
-    initBlock,
-  );
+  // await fixStuckPolygon(chainSchema, chainId);
+
+  const processor = getProcessor(archiveId, chainRPC, initBlock);
   const db = new TypeormDatabase({
-    supportHotBlocks: false,
     stateSchema: chainSchema,
   });
+
   processor.run(db, async (ctx) => {
     const emoteEventsData: {
       emoter: string;
@@ -65,10 +118,12 @@ export const runProcessor = (
         id: `${chainId}-${block.header.id}`,
         number: block.header.height,
         timestamp: new Date(block.header.timestamp),
+        hash: block.header.hash
       });
 
       for (let log of block.logs) {
         if (log.topics[0] === spec.events.Emoted.topic) {
+          await ctx.store.upsert(blockEntity);
           const { emoter, tokenId, on, collection, emoji } =
             spec.events['Emoted'].decode(log);
           emoteEventsData.push({
