@@ -30,7 +30,7 @@ const getProcessor = (
         from: initBlock,
       },
     })
-    .setFinalityConfirmation(1);
+    .setFinalityConfirmation(150);
 };
 
 export const runProcessor = (
