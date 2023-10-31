@@ -24,6 +24,8 @@ deploy:
       cmd: [ "node", "lib/networks/polygon/main" ]
     - name: base
       cmd: [ "node", "lib/networks/base/main" ]
+    - name: astar
+      cmd: [ "node", "lib/networks/astar/main" ]
   api:
     cmd:
       - npx
