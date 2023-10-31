@@ -10,6 +10,7 @@ deploy:
     - MOONBEAM_RPC
     - POLYGON_RPC
     - BASE_RPC
+    - ASTAR_RPC
   addons:
     postgres:
   processor:

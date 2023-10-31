@@ -37,3 +37,8 @@ export const BASE_ARCHIVE_ID = 'base-mainnet';
 export const BASE_RPC = process.env.BASE_RPC || '';
 export const BASE_CHAIN_ID = 8453;
 export const BASE_INIT_BLOCK = 2648217;
+
+export const ASTAR_ARCHIVE_ID = 'astar';
+export const ASTAR_RPC = process.env.ASTAR_RPC || '';
+export const ASTAR_CHAIN_ID = 592;
+export const ASTAR_INIT_BLOCK = 2648217;
