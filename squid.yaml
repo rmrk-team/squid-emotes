@@ -1,6 +1,6 @@
 manifestVersion: subsquid.io/v0.1
 name: emotes
-version: 1
+version: 2
 description: 'A squid indexer for emotes'
 build:
 deploy:

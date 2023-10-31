@@ -41,4 +41,4 @@ export const BASE_INIT_BLOCK = 2648217;
 export const ASTAR_ARCHIVE_ID = 'astar';
 export const ASTAR_RPC = process.env.ASTAR_RPC || '';
 export const ASTAR_CHAIN_ID = 592;
-export const ASTAR_INIT_BLOCK = 2648217;
+export const ASTAR_INIT_BLOCK = 4578069;
