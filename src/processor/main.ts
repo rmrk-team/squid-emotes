@@ -24,7 +24,7 @@ const getProcessor = (
       }),
       chain: {
         url: chainRPC,
-        rateLimit: 40,
+        rateLimit: 10,
       },
     })
     .setFinalityConfirmation(150)

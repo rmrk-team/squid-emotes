@@ -12,6 +12,13 @@ deploy:
     - BASE_RPC
     - ASTAR_RPC
   addons:
+    rpc:
+      - eth-sepolia:http
+      - eth-mainnet:http
+      - moonbeam:http
+      - polygon:http
+      - base-mainnet:http
+      - astar:http
     postgres:
   processor:
     - name: eth-sepolia
@@ -38,3 +45,8 @@ deploy:
       - '100'
       - '--dumb-cache-max-age'
       - '1000'
+
+scale:
+  addons:
+    rpc:
+      max-rate: 10rps
