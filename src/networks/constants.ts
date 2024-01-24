@@ -6,7 +6,7 @@ export const EMOTES_REPO_NEW_ADDRESS =
 export const ETH_MAINNET_ARCHIVE =
   'https://v2.archive.subsquid.io/network/ethereum-mainnet';
 export const ETH_MAINNET_ARCHIVE_ID = 'eth-mainnet';
-export const ETH_MAINNET_RPC = process.env.RPC_ETH_MAINNET_HTTP || process.env.ETH_MAINNET_RPC || '';
+export const ETH_MAINNET_RPC = process.env.RPC_ETH_HTTP || process.env.ETH_MAINNET_RPC || '';
 export const ETH_MAINNET_CHAIN_ID = 1;
 export const ETH_MAINNET_INIT_BLOCK = 17770688;
 
@@ -34,7 +34,7 @@ export const POLYGON_INIT_BLOCK = 45477725;
 export const BASE_ARCHIVE =
   'https://v2.archive.subsquid.io/network/base-mainnet';
 export const BASE_ARCHIVE_ID = 'base-mainnet';
-export const BASE_RPC = process.env.RPC_BASE_MAINNET_HTTP || process.env.BASE_RPC || '';
+export const BASE_RPC = process.env.RPC_BASE_HTTP || process.env.BASE_RPC || '';
 export const BASE_CHAIN_ID = 8453;
 export const BASE_INIT_BLOCK = 2648217;
 

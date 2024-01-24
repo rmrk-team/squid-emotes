@@ -14,10 +14,10 @@ deploy:
   addons:
     rpc:
       - eth-sepolia:http
-      - eth-mainnet:http
+      - eth:http
       - moonbeam:http
       - polygon:http
-      - base-mainnet:http
+      - base:http
       - astar:http
     postgres:
   processor:
