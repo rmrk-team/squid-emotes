@@ -49,4 +49,4 @@ deploy:
 scale:
   addons:
     rpc:
-      max-rate: 10rps
+      max-rate: 120rps
