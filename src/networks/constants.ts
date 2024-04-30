@@ -12,7 +12,7 @@ export const ETH_MAINNET_INIT_BLOCK = 17770688;
 
 export const ETH_SEPOLIA_ARCHIVE =
   'https://v2.archive.subsquid.io/network/eth-sepolia';
-export const ETH_SEPOLIA_ARCHIVE_ID = 'sepolia';
+export const ETH_SEPOLIA_ARCHIVE_ID = 'eth-sepolia';
 export const ETH_SEPOLIA_RPC = process.env.RPC_ETH_SEPOLIA_HTTP || process.env.ETH_SEPOLIA_RPC || '';
 export const ETH_SEPOLIA_CHAIN_ID = 11155111;
 export const ETH_SEPOLIA_INIT_BLOCK = 3932466;
